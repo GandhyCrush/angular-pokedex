@@ -1,0 +1,6 @@
+<mat-grid-list cols="3" rowHeight="500" *ngIf="categoryList">
+    <mat-grid-tile *ngFor="let category of categoryList">
+        <app-category-card [pokemonType]="category"></app-category-card>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-progress-bar mode="indeterminate" *ngIf="!categoryList"></mat-progress-bar>
