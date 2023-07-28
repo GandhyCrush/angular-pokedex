@@ -1,0 +1,4 @@
+<ng-container *ngIf="pokemonData">
+    <img [src]="pokemonData.sprites.front_default" class="poke-image">
+    <button (click)="showDialog()" mat-button>Agregar comentario</button>
+</ng-container>

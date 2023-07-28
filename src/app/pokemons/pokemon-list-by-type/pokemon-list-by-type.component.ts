@@ -28,7 +28,7 @@ export class PokemonListByTypeComponent implements OnInit {
               element.pokemon.url.slice(0, -1).split('/').pop()
             );
           });
-          console.log(JSON.stringify(data.pokemon));
+          //console.log(JSON.stringify(data.pokemon));
         },
       });
     });

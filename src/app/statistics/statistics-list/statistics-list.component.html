@@ -1,1 +1,6 @@
-<p>{{ battleData | async }}</p>
+<ngx-charts-bar-vertical
+  [xAxis]="chartConfig.xAxis"
+  [yAxis]="chartConfig.yAxis"
+  [results]="dataList"
+>
+</ngx-charts-bar-vertical>

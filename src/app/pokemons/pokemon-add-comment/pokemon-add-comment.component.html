@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Registrar comentario</h1>
+<div>
+  <mat-form-field>
+    <mat-label>Comentario</mat-label>
+    <textarea matInput [(ngModel)]="comment" placeholder="Ingrese su comentario"></textarea>
+  </mat-form-field>
+</div>
+<div align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button (click)="sendCommentSignal()" mat-button color="primary">Registrar</button>
+</div>

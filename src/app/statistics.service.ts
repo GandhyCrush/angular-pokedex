@@ -8,8 +8,8 @@ import { Subject } from 'rxjs'
 })
 export class StatisticsService {
 
-  private socket: any; 
-  public battleStatisticMessage = new Subject<string>;
+  private socket$: any; 
+  public battleStatisticMessage$ = new Subject<string>;
   //Subject -> Convertir información y transformarla a un stream (next, complete, error, subscribe)
   // .next -> enviar información al stream
   // .complete -> cerrar el canal
@@ -19,21 +19,35 @@ export class StatisticsService {
   constructor() { }
 
   public connect(): void {
-    this.socket = this.getNewWebSocket();
-    this.socket.subscribe({
+    this.socket$ = this.getNewWebSocket();
+    this.socket$.subscribe({
       next: (data: any) => {
         //console.log(JSON.stringify(data));
-        this.battleStatisticMessage.next(JSON.stringify(data));
+        this.battleStatisticMessage$.next(JSON.stringify(data));
         
       }
     });
   }
 
   private getNewWebSocket() {
-    return webSocket(environment.pokeStatisticsUrl);
+    return webSocket({
+      url: environment.pokeStatisticsUrl,
+      openObserver: {
+        next: () => {
+          console.log('WebSocket conectado');
+        }
+      },
+      closeObserver: {
+        next: () => {
+          console.log('Socket se ha cerrado');
+          this.socket$ = undefined;
+          //this.connect(); usar con cuidado
+        }
+      }
+    });
   }
 
   close() {
-    this.socket.complete();
+    this.socket$.complete();
   }
 }

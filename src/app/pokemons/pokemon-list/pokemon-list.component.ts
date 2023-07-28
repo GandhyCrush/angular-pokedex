@@ -9,12 +9,15 @@ import { PokemonService } from 'src/app/pokemon.service';
 export class PokemonListComponent implements OnInit {
   pokemonIds: any[];
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+  ) {}
 
   ngOnInit(): void {
     this.pokemonService.getPokemonList().subscribe({
       next: (data) => {
         //console.log(JSON.stringify(data));
+
         this.pokemonIds = [];
         data.results.forEach((element: any) => {
           this.pokemonIds.push(element.url.slice(0, -1).split('/').pop());
