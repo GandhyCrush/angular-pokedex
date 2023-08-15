@@ -13,8 +13,9 @@ import { PokemonDetailPageComponent } from './pokemon-detail-page/pokemon-detail
 import { MatDialogModule } from '@angular/material/dialog';
 import { PokemonAddCommentComponent } from './pokemon-add-comment/pokemon-add-comment.component';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AuthGuard } from '../guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,16 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     RouterModule.forChild([
-      { path: 'pokemon-list', component: PokemonListComponent },
-      { path: 'pokemon-my-favorites', component: MyFavoritesComponent },
+      {
+        path: 'pokemon-list',
+        component: PokemonListComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'pokemon-my-favorites',
+        component: MyFavoritesComponent,
+        canActivate: [AuthGuard],
+      },
       {
         path: 'pokemon-list-by-type/:id',
         component: PokemonListByTypeComponent,

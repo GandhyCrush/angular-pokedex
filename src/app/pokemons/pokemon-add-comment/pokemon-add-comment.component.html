@@ -1,11 +1,24 @@
 <h1 mat-dialog-title>Registrar comentario</h1>
-<div>
-  <mat-form-field>
-    <mat-label>Comentario</mat-label>
-    <textarea matInput [(ngModel)]="comment" placeholder="Ingrese su comentario"></textarea>
-  </mat-form-field>
-</div>
-<div align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
-  <button (click)="sendCommentSignal()" mat-button color="primary">Registrar</button>
-</div>
+
+<form #commentForm="ngForm" (ngSubmit)="commentForm.valid && sendCommentSignal()">
+  <div>
+    <mat-form-field>
+      <mat-label>Comentario</mat-label>
+      <textarea id="txtcomment" name="txtcomment" 
+        #txtcomment="ngModel" minlength="10"
+        required matInput [(ngModel)]="comment" placeholder="Ingrese su comentario"></textarea>
+      <mat-hint *ngIf="txtcomment.invalid && (txtcomment.dirty || txtcomment.touched)" class="alert alert-danger">
+        <div *ngIf="txtcomment.errors?.['required']">
+          El comentario es requerido
+        </div>
+        <div *ngIf="txtcomment.errors?.['minlength']">
+          La longitud mínima es de 10 caracteres
+        </div>
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit" mat-button color="primary">Registrar</button>
+  </div>  
+</form>

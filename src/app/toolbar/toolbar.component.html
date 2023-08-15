@@ -1,13 +1,27 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <h1>PokeDex Advanced</h1>
-        <span class="menu-spacer"></span>
-        <div>
-            <a mat-button routerLinkActive="active" routerLink="/category-list"> Categorias </a>
-            <a mat-button routerLinkActive="active" routerLink="/pokemon-list"> Pokemons </a>
-            <a mat-button routerLinkActive="active" routerLink="/statistics-list"> Estadísticas </a>
-            <a mat-button routerLinkActive="active" routerLink="/pokemon-my-favorites"> Mis Favoritos </a>
-        </div>
-    </mat-toolbar-row>
-
+  <mat-toolbar-row>
+    <h1>PokeDex Advanced</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLinkActive="active" routerLink="/category-list">
+        Categorias
+      </a>
+      <a mat-button routerLinkActive="active" routerLink="/pokemon-list">
+        Pokemons
+      </a>
+      <a mat-button routerLinkActive="active" routerLink="/statistics-list">
+        Estadísticas
+      </a>
+      <a
+        mat-button
+        routerLinkActive="active"
+        routerLink="/pokemon-my-favorites"
+      >
+        Mis Favoritos
+      </a>
+      <button (click)="logout()" mat-button *ngIf="userData">
+        {{ userData.email }}
+      </button>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>

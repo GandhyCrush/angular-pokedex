@@ -2,3 +2,9 @@
     <img [src]="pokemonData.sprites.front_default" class="poke-image">
     <button (click)="showDialog()" mat-button>Agregar comentario</button>
 </ng-container>
+
+<ng-container *ngIf="comments">
+    <mat-card *ngFor="let comment of comments">
+        <mat-card-content>{{comment.comment}}</mat-card-content>
+    </mat-card>
+</ng-container>
